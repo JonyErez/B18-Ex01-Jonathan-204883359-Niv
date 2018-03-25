@@ -65,6 +65,7 @@ namespace B18_Ex01_01
 			System.Text.RegularExpressions.Regex isBinary = new System.Text.RegularExpressions.Regex(@"^[01]{9}$");
 			return isBinary.IsMatch(i_binaryNumber);
 
+			//test
 			//No need - swapped with a regex above
 			//bool isBinary = i_binaryNumber.Length == expectedBinaryNumberLength;
 			//if (isBinary)
