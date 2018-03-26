@@ -17,7 +17,7 @@ namespace B18_Ex01_01
 
 		public static void Main()
 		{
-			
+			//hi
 			BinaryAnalyzer();
 			Console.WriteLine("Press 'enter' to exit!");
 			Console.ReadLine();
