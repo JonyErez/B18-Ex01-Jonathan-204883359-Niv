@@ -7,58 +7,67 @@ namespace B18_Ex01_02
 	{
 		public static void Main()
 		{
-			SandClock();
+			Hourglass();
 			Console.WriteLine("Press 'enter' to exit!");
 			Console.ReadLine();
 		}
 
-		public static void SandClock()
+		public static void Hourglass()
 		{
-			Console.WriteLine(SandClockBuilder(5));
+			Console.WriteLine(Hourglass(5));
 		}
 
 
-		public static StringBuilder SandClockBuilder(int i_clockHeight)
+		public static StringBuilder Hourglass(int i_HourglassHeight)
 		{
-			StringBuilder mySandClock = new StringBuilder((i_clockHeight * i_clockHeight) + i_clockHeight);
-			BuildTopHalfOfSandClock(mySandClock, i_clockHeight);
-			BuildTBottomHalfOfSandClock(mySandClock, i_clockHeight);
-			return mySandClock;
+			StringBuilder myHourglass = new StringBuilder((i_HourglassHeight * i_HourglassHeight) + i_HourglassHeight);
+			BuildTopHalfOfHourglass(myHourglass, i_HourglassHeight);
+			BuildTBottomHalfOfHourglass(myHourglass, i_HourglassHeight);
+			return myHourglass;
 		}
 
-		public static void BuildTopHalfOfSandClock(StringBuilder i_mySandClock, int i_clockHeight)
+		public static void BuildTopHalfOfHourglass(StringBuilder i_myHourglass, int i_HourglassHeight)
 		{
-			for (int currentSandClockLine = 0; currentSandClockLine < (i_clockHeight / 2) + 1; currentSandClockLine++)
+			for (int currentHourglassLine = 0; currentHourglassLine < (i_HourglassHeight / 2) + 1; currentHourglassLine++)
 			{
-				for (int i = 0; i < currentSandClockLine; i++)
+				for (int i = 0; i < currentHourglassLine; i++)
 				{
-					i_mySandClock.Append(' ');
+					i_myHourglass.Append(' ');
 				}
 
-				for (int i = 0; i < i_clockHeight - (2 * currentSandClockLine); i++)
+				for (int i = 0; i < i_HourglassHeight - (2 * currentHourglassLine); i++)
 				{
-					i_mySandClock.Append('*');
+					i_myHourglass.Append('*');
 				}
 
-				for (int i = 0; i < currentSandClockLine; i++)
+				for (int i = 0; i < currentHourglassLine; i++)
 				{
-					i_mySandClock.Append(' ');
+					i_myHourglass.Append(' ');
 				}
-				i_mySandClock.Append(System.Environment.NewLine);
+				i_myHourglass.Append(System.Environment.NewLine);
 			}
 		}
 
-		public static void BuildTBottomHalfOfSandClock(StringBuilder i_mySandClock, int i_clockHeight)
+		public static void BuildTBottomHalfOfHourglass(StringBuilder i_myHourglass, int i_HourglassHeight)
 		{
-			for (int currentSandClockLine = i_clockHeight/2 - 1; currentSandClockLine >= 0; currentSandClockLine--)
-			{
-				for (int i=currentSandClockLine * (i_clockHeight+1); i< (currentSandClockLine + 1) * (i_clockHeight + 1); i++)
-				{
-					i_mySandClock.Append(i_mySandClock[i]);
-				}
-			}
+            for (int currentHourglassLine = (i_HourglassHeight/2) - 1; currentHourglassLine >= 0; currentHourglassLine--)
+            {
+                for (int i = 0; i < currentHourglassLine; i++)
+                {
+                    i_myHourglass.Append(' ');
+                }
+
+                for (int i = 0; i < i_HourglassHeight - (2 * currentHourglassLine); i++)
+                {
+                    i_myHourglass.Append('*');
+                }
+
+                for (int i = 0; i < currentHourglassLine; i++)
+                {
+                    i_myHourglass.Append(' ');
+                }
+                i_myHourglass.Append(System.Environment.NewLine);
+            }
 		}
-
-
 	}
 }
