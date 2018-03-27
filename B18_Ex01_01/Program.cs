@@ -6,14 +6,14 @@ namespace B18_Ex01_01
 	public static class Program
 	{
 		enum eBase { Two = 2, Ten = 10 };
-		const int numberOfInputs = 3;
-		const int expectedBinaryNumberLength = 9;
+		const int k_NumberOfInputs = 3;
+		const int k_ExpectedBinaryNumberLength = 9;
 
-		static float m_avgNumOfZeros;
-		static float m_avgNumOfOnes;
-		static int m_powerOfTwoCounter;
-		static int m_isDownwardSeries;
-		static float m_avgSumOfNumbers;
+		static float s_AvgNumOfZeros;
+		static float s_AvgNumOfOnes;
+		static int s_PowerOfTwoCounter;
+		static int s_IsDownwardSeries;
+		static float s_AvgSumOfNumbers;
 
 		public static void Main()
 		{
@@ -24,33 +24,33 @@ namespace B18_Ex01_01
 
 		public static void BinaryAnalyzer()
 		{
-			int[] decimalNumbers = new int[numberOfInputs];
-			for (int i = 0; i < numberOfInputs; i++)
+			int[] decimalNumbers = new int[k_NumberOfInputs];
+			for (int i = 0; i < k_NumberOfInputs; i++)
 			{
 				Console.WriteLine("Please enter a binary number (9 digits long): ");
-				decimalNumbers[i] = HandleBinaryNumber();
+				decimalNumbers[i] = handleBinaryNumber();
 			}
-			m_avgSumOfNumbers /= (float)numberOfInputs;
-			m_avgNumOfOnes /= (float)numberOfInputs;
-			m_avgNumOfZeros /= (float)numberOfInputs;
-			PrintStatistics(decimalNumbers);
+			s_AvgSumOfNumbers /= (float)k_NumberOfInputs;
+			s_AvgNumOfOnes /= (float)k_NumberOfInputs;
+			s_AvgNumOfZeros /= (float)k_NumberOfInputs;
+			printStatistics(decimalNumbers);
 		}
 
-		private static int HandleBinaryNumber()
+		private static int handleBinaryNumber()
 		{
-			string binaryNumber = ReadBinary();
-			CountOnesAndZeroes(binaryNumber);
-			IsAPowerOfTwo(binaryNumber);
-			int decimalNumber = BinaryToInt(binaryNumber);
-			IsDownwardSeries(decimalNumber);
-			m_avgSumOfNumbers += decimalNumber;
+			string binaryNumber = readBinary();
+			countOnesAndZeroes(binaryNumber);
+			isAPowerOfTwo(binaryNumber);
+			int decimalNumber = binaryToInt(binaryNumber);
+			isDownwardSeries(decimalNumber);
+			s_AvgSumOfNumbers += decimalNumber;
 			return decimalNumber;
 		}
 
-		private static string ReadBinary()
+		private static string readBinary()
 		{
 			string binaryNumber = Console.ReadLine();
-			while (!IsLegalBinaryNumber(binaryNumber))
+			while (!isLegalBinaryNumber(binaryNumber))
 			{
 				Console.WriteLine("Please enter a valid binary number (9 bits long):");
 				binaryNumber = Console.ReadLine();
@@ -58,83 +58,88 @@ namespace B18_Ex01_01
 			return binaryNumber;
 		}
 
-		private static bool IsLegalBinaryNumber(string i_binaryNumber)
+		private static bool isLegalBinaryNumber(string i_BinaryNumber)
 		{
+			//Regex can be used instead:
+			//System.Text.RegularExpressions.Regex isBinary = new System.Text.RegularExpressions.Regex(@"^[01]{9}$");
+			//return isBinary.IsMatch(i_BinaryNumber);
 
-			System.Text.RegularExpressions.Regex isBinary = new System.Text.RegularExpressions.Regex(@"^[01]{9}$");
-			return isBinary.IsMatch(i_binaryNumber);
-
-			//No need - swapped with a regex above
-			//bool isBinary = i_binaryNumber.Length == expectedBinaryNumberLength;
-			//if (isBinary)
-			//{
-			//	for (int currentDigit = 0; isBinary && currentDigit < i_binaryNumber.Length; currentDigit++)
-			//	{
-			//		isBinary = (i_binaryNumber[currentDigit] == '0' || i_binaryNumber[currentDigit] == '1');
-			//	}
-			//}
-
+			bool isBinary = i_BinaryNumber.Length == k_ExpectedBinaryNumberLength;
+			if (isBinary)
+			{
+				for (int currentDigit = 0; isBinary && currentDigit < i_BinaryNumber.Length; currentDigit++)
+				{
+					isBinary = (i_BinaryNumber[currentDigit] == '0' || i_BinaryNumber[currentDigit] == '1');
+				}
+			}
+			return isBinary;
 		}
 
-		private static void CountOnesAndZeroes(string i_binaryNumber)
+		private static void countOnesAndZeroes(string i_BinaryNumber)
 		{
-			foreach (char currentDigit in i_binaryNumber)
+			foreach (char currentDigit in i_BinaryNumber)
 			{
 				if (currentDigit == '1')
-					m_avgNumOfOnes++;
+				{
+					s_AvgNumOfOnes++;
+				}
 				else
-					m_avgNumOfZeros++;
+				{
+					s_AvgNumOfZeros++;
+				}
 			}
 		}
 
-		private static void IsAPowerOfTwo(string i_binaryNumber)
+		private static void isAPowerOfTwo(string i_BinaryNumber)
 		{
 			int howManyOnes = 0;
-			foreach (char currentDigit in i_binaryNumber)
+			foreach (char currentDigit in i_BinaryNumber)
 			{
 				if (currentDigit == '1')
+				{
 					howManyOnes++;
+				}
 			}
 			if (howManyOnes == 1)
-				m_powerOfTwoCounter++;
+			{
+				s_PowerOfTwoCounter++;
+			}
 		}
 
-		private static int BinaryToInt(string i_binaryNumber)
+		private static int binaryToInt(string i_BinaryNumber)
 		{
 			int digitWeight = 1;
 			int decimalNumber = 0;
-			for (int currentDigit = i_binaryNumber.Length - 1; currentDigit >= 0; currentDigit--)
+			for (int currentDigit = i_BinaryNumber.Length - 1; currentDigit >= 0; currentDigit--)
 			{
-				decimalNumber += (DigitToInt(i_binaryNumber[currentDigit]) * digitWeight);
+				decimalNumber += (digitToInt(i_BinaryNumber[currentDigit]) * digitWeight);
 				digitWeight *= (int)eBase.Two;
 			}
 			return decimalNumber;
 		}
 
-		private static int DigitToInt(char digit)
+		private static int digitToInt(char digit)
 		{
 			return digit - '0';
 		}
 
-		private static void IsDownwardSeries(int i_decimalNumber)
+		private static void isDownwardSeries(int i_DecimalNumber)
 		{
 			bool isDownwardSeries = true;
 			int currentDigit, nextDigit;
-			while (isDownwardSeries && i_decimalNumber >= (int)eBase.Ten)
+			while (isDownwardSeries && i_DecimalNumber >= (int)eBase.Ten)
 			{
-				i_decimalNumber = Math.DivRem(i_decimalNumber, (int)eBase.Ten, out currentDigit);
-				//Swapped with System.Math.DivRem(int a, int b, out int Remainder), returns a/b, and remainder as output paramater
-				//currentDigit = i_decimalNumber % (int)eBase.Ten;
-				//i_decimalNumber /= (int)eBase.Ten;
-				nextDigit = i_decimalNumber % (int)eBase.Ten;
-				if (nextDigit <= currentDigit)
-					isDownwardSeries = false;
+				i_DecimalNumber = Math.DivRem(i_DecimalNumber, (int)eBase.Ten, out currentDigit);
+				nextDigit = i_DecimalNumber % (int)eBase.Ten;
+				isDownwardSeries = nextDigit > currentDigit;
 			}
 			if (isDownwardSeries)
-				m_isDownwardSeries++;
+			{
+				s_IsDownwardSeries++;
+			}
 		}
 
-		private static void PrintStatistics(int[] decibalNumbers)
+		private static void printStatistics(int[] decibalNumbers)
 		{
 			Console.WriteLine(
 @"The decimal number values are: {0}, {1}, {2}.
@@ -143,7 +148,7 @@ The avg number of Ones in each number is: {4:F3}
 There are {5} numbers which are a power of 2.
 There are {6} numbers which present a strong downwards series.
 The avg sum of all the numbers is: {7:F3}"
-			,decibalNumbers[0], decibalNumbers[1], decibalNumbers[2], m_avgNumOfZeros, m_avgNumOfOnes, m_powerOfTwoCounter, m_isDownwardSeries, m_avgSumOfNumbers);
+			, decibalNumbers[0], decibalNumbers[1], decibalNumbers[2], s_AvgNumOfZeros, s_AvgNumOfOnes, s_PowerOfTwoCounter, s_IsDownwardSeries, s_AvgSumOfNumbers);
 		}
 	}
 }
