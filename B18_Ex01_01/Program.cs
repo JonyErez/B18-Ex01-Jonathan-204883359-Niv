@@ -52,6 +52,7 @@ namespace B18_Ex01_01
 			string binaryNumber = Console.ReadLine();
 			while (!isLegalBinaryNumber(binaryNumber))
 			{
+				Console.WriteLine("Invalid input!");
 				Console.WriteLine("Please enter a valid binary number (9 bits long):");
 				binaryNumber = Console.ReadLine();
 			}

@@ -24,6 +24,7 @@ namespace B18_Ex01_03
 			sizeOfHourglass = Console.ReadLine();
 			while (!checkInputValidity(sizeOfHourglass, out hourglassHeight))
 			{
+				Console.WriteLine("Invalid input!");
 				Console.WriteLine("Please enter a valid size for the hourglass (positive int): ");
 				sizeOfHourglass = Console.ReadLine();
 			}

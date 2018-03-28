@@ -40,6 +40,7 @@ namespace B18_Ex01_04
 
 			while (!isValidInput(userInput, out o_IsNumberString))
 			{
+				Console.WriteLine("Invalid input!");
 				Console.WriteLine("Please enter a valid 8 character long string: ");
 				userInput = Console.ReadLine();
 			}
@@ -92,7 +93,7 @@ namespace B18_Ex01_04
 				if (!isValid)
 				{
 					o_IsNumberString = true;
-					isValid = isAllNumbers(i_UserInput);
+					isValid = IsAllNumbers(i_UserInput);
 				}
 			}
 
@@ -110,7 +111,7 @@ namespace B18_Ex01_04
 			return isValid;
 		}
 
-		private static bool isAllNumbers(string i_UserInput)
+		public static bool IsAllNumbers(string i_UserInput)
 		{
 			bool isValid = true;
 			foreach (char currentDigit in i_UserInput)
