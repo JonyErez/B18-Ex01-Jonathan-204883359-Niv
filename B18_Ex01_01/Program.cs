@@ -15,9 +15,9 @@ namespace B18_Ex01_01
 
 		public static float s_AvgNumOfZeros;
 		public static float s_AvgNumOfOnes;
+		public static float s_AvgSumOfNumbers;
 		public static int s_PowerOfTwoCounter;
 		public static int s_IsDownwardSeries;
-		public static float s_AvgSumOfNumbers;
 
 		public static void Main()
 		{
