@@ -38,7 +38,7 @@ namespace B18_Ex01_02
 			}
 		}
 
-		private static void addCurrentHourglassLine (StringBuilder i_MyHourglass, int i_HourglassHeight, int i_CurrentHourglassLine)
+		private static void addCurrentHourglassLine(StringBuilder i_MyHourglass, int i_HourglassHeight, int i_CurrentHourglassLine)
 		{
 			addSymbolsToString(i_MyHourglass, ' ', i_CurrentHourglassLine);
 			addSymbolsToString(i_MyHourglass, '*', i_HourglassHeight - (2 * i_CurrentHourglassLine));
@@ -46,7 +46,7 @@ namespace B18_Ex01_02
 			i_MyHourglass.Append(System.Environment.NewLine);
 		}
 
-		private static int evenToOdd (int i_NumberToConvert)
+		private static int evenToOdd(int i_NumberToConvert)
 		{
 			if (i_NumberToConvert % 2 == 0)
 			{
@@ -56,9 +56,9 @@ namespace B18_Ex01_02
 			return i_NumberToConvert;
 		}
 
-		private static void addSymbolsToString (StringBuilder i_MyHourglass, char i_Symbol, int i_NumberOfTimes)
+		private static void addSymbolsToString(StringBuilder i_MyHourglass, char i_Symbol, int i_NumberOfTimes)
 		{
-			for (int i=0; i < i_NumberOfTimes; i++)
+			for (int i = 0; i < i_NumberOfTimes; i++)
 			{
 				i_MyHourglass.Append(i_Symbol);
 			}

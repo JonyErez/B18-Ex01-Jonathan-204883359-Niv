@@ -1,9 +1,8 @@
 ﻿using System;
 
-
 namespace B18_Ex01_04
 {
-	class Program
+	public static class Program
 	{
 		public static void Main()
 		{
@@ -81,14 +80,13 @@ namespace B18_Ex01_04
 			return isPalindrome;
 		}
 
-		private static bool isValidInput(string i_UserInput , out bool o_IsNumberString)
+		private static bool isValidInput(string i_UserInput, out bool o_IsNumberString)
 		{
 			bool isValid = i_UserInput.Length == 8;
 			o_IsNumberString = false;
 
 			if (isValid)
 			{
-
 				isValid = isAllLetters(i_UserInput);
 				if (!isValid)
 				{

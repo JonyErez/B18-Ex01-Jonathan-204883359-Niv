@@ -1,19 +1,23 @@
 ﻿using System;
 
-
 namespace B18_Ex01_01
 {
 	public static class Program
 	{
-		enum eBase { Two = 2, Ten = 10 };
-		const int k_NumberOfInputs = 3;
-		const int k_ExpectedBinaryNumberLength = 9;
+		public enum eBase
+		{
+			Two = 2,
+			Ten = 10
+		}
 
-		static float s_AvgNumOfZeros;
-		static float s_AvgNumOfOnes;
-		static int s_PowerOfTwoCounter;
-		static int s_IsDownwardSeries;
-		static float s_AvgSumOfNumbers;
+		public const int k_NumberOfInputs = 3;
+		public const int k_ExpectedBinaryNumberLength = 9;
+
+		public static float s_AvgNumOfZeros;
+		public static float s_AvgNumOfOnes;
+		public static int s_PowerOfTwoCounter;
+		public static int s_IsDownwardSeries;
+		public static float s_AvgSumOfNumbers;
 
 		public static void Main()
 		{
@@ -30,6 +34,7 @@ namespace B18_Ex01_01
 				Console.WriteLine("Please enter a binary number (9 digits long): ");
 				decimalNumbers[i] = handleBinaryNumber();
 			}
+
 			s_AvgSumOfNumbers /= (float)k_NumberOfInputs;
 			s_AvgNumOfOnes /= (float)k_NumberOfInputs;
 			s_AvgNumOfZeros /= (float)k_NumberOfInputs;
@@ -56,23 +61,25 @@ namespace B18_Ex01_01
 				Console.WriteLine("Please enter a valid binary number (9 bits long):");
 				binaryNumber = Console.ReadLine();
 			}
+
 			return binaryNumber;
 		}
 
 		private static bool isLegalBinaryNumber(string i_BinaryNumber)
 		{
-			//Regex can be used instead:
-			//System.Text.RegularExpressions.Regex isBinary = new System.Text.RegularExpressions.Regex(@"^[01]{9}$");
-			//return isBinary.IsMatch(i_BinaryNumber);
+			////Regex can be used instead:
+			////.Text.RegularExpressions.Regex isBinary = new System.Text.RegularExpressions.Regex(@"^[01]{9}$");
+			////return isBinary.IsMatch(i_BinaryNumber);
 
 			bool isBinary = i_BinaryNumber.Length == k_ExpectedBinaryNumberLength;
 			if (isBinary)
 			{
 				for (int currentDigit = 0; isBinary && currentDigit < i_BinaryNumber.Length; currentDigit++)
 				{
-					isBinary = (i_BinaryNumber[currentDigit] == '0' || i_BinaryNumber[currentDigit] == '1');
+					isBinary = i_BinaryNumber[currentDigit] == '0' || i_BinaryNumber[currentDigit] == '1';
 				}
 			}
+
 			return isBinary;
 		}
 
@@ -101,6 +108,7 @@ namespace B18_Ex01_01
 					howManyOnes++;
 				}
 			}
+
 			if (howManyOnes == 1)
 			{
 				s_PowerOfTwoCounter++;
@@ -113,9 +121,10 @@ namespace B18_Ex01_01
 			int decimalNumber = 0;
 			for (int currentDigit = i_BinaryNumber.Length - 1; currentDigit >= 0; currentDigit--)
 			{
-				decimalNumber += (digitToInt(i_BinaryNumber[currentDigit]) * digitWeight);
+				decimalNumber += digitToInt(i_BinaryNumber[currentDigit]) * digitWeight;
 				digitWeight *= (int)eBase.Two;
 			}
+
 			return decimalNumber;
 		}
 
@@ -134,6 +143,7 @@ namespace B18_Ex01_01
 				nextDigit = i_DecimalNumber % (int)eBase.Ten;
 				isDownwardSeries = nextDigit > currentDigit;
 			}
+
 			if (isDownwardSeries)
 			{
 				s_IsDownwardSeries++;
@@ -148,8 +158,8 @@ The avg number of zeroes in each number is: {3:F3})
 The avg number of Ones in each number is: {4:F3}
 There are {5} numbers which are a power of 2.
 There are {6} numbers which present a strong downwards series.
-The avg sum of all the numbers is: {7:F3}"
-			, decibalNumbers[0], decibalNumbers[1], decibalNumbers[2], s_AvgNumOfZeros, s_AvgNumOfOnes, s_PowerOfTwoCounter, s_IsDownwardSeries, s_AvgSumOfNumbers);
+The avg sum of all the numbers is: {7:F3}",
+			decibalNumbers[0], decibalNumbers[1], decibalNumbers[2], s_AvgNumOfZeros, s_AvgNumOfOnes, s_PowerOfTwoCounter, s_IsDownwardSeries, s_AvgSumOfNumbers);
 		}
 	}
 }

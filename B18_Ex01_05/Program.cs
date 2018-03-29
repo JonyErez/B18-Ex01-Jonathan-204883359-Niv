@@ -2,7 +2,7 @@
 
 namespace B18_Ex01_05
 {
-	class Program
+	public static class Program
 	{
 		public static void Main()
 		{
@@ -51,6 +51,7 @@ namespace B18_Ex01_05
 				{
 					io_MinDigit = currentDigit;
 				}
+
 				if (currentDigit > io_MaxDigit)
 				{
 					io_MaxDigit = currentDigit;
@@ -58,7 +59,7 @@ namespace B18_Ex01_05
 			}
 		}
 
-		private static int howManyEvenDigits (int i_Number)
+		private static int howManyEvenDigits(int i_Number)
 		{
 			int evenDigits = 0;
 			int currentDigit;
@@ -105,8 +106,6 @@ namespace B18_Ex01_05
 			Console.WriteLine("The biggest digit in the number is: {0}.", maxDigit);
 			Console.WriteLine("The number of even digits in the number is: {0}.", evenDigits);
 			Console.WriteLine("There number of digits smaller than the singles digit is: {0}.", smallerThanSinglesDigit);
-
-
 		}
 	}
 }

@@ -3,14 +3,14 @@ using System.Text;
 
 namespace B18_Ex01_03
 {
-	class Program
+	public static class Program
 	{
 		public static void Main()
 		{
 			int hourglassHeight;
 
 			hourglassHeight = readInput();
-			Console.WriteLine("{0}{1}",System.Environment.NewLine, B18_Ex01_02.Program.Hourglass(hourglassHeight));
+			Console.WriteLine("{0}{1}", System.Environment.NewLine, B18_Ex01_02.Program.Hourglass(hourglassHeight));
 			Console.WriteLine("Press 'enter' to exit!");
 			Console.ReadLine();
 		}
