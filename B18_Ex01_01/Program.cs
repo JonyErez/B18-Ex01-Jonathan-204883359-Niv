@@ -152,14 +152,22 @@ namespace B18_Ex01_01
 
 		private static void printStatistics(int[] decibalNumbers)
 		{
-			Console.WriteLine(
-@"The decimal number values are: {0}, {1}, {2}.
-The avg number of zeroes in each number is: {3:F3})
-The avg number of Ones in each number is: {4:F3}
-There are {5} numbers which are a power of 2.
-There are {6} numbers which present a strong downwards series.
-The avg sum of all the numbers is: {7:F3}",
-			decibalNumbers[0], decibalNumbers[1], decibalNumbers[2], s_AvgNumOfZeros, s_AvgNumOfOnes, s_PowerOfTwoCounter, s_IsDownwardSeries, s_AvgSumOfNumbers);
+			string.Format(
+@"The decimal number values are: {0}, {1}, {2}.{8}
+The avg number of zeroes in each number is: {3:F3} {8}
+The avg number of Ones in each number is: {4:F3} {8}
+There are {5} numbers which are a power of 2.{8}
+There are {6} numbers which present a strong downwards series.{8}
+The avg sum of all the numbers is: {7:F3} {8}",
+			decibalNumbers[0],
+			decibalNumbers[1], 
+			decibalNumbers[2], 
+			s_AvgNumOfZeros,
+			s_AvgNumOfOnes,
+			s_PowerOfTwoCounter,
+			s_IsDownwardSeries,
+			s_AvgSumOfNumbers,
+			System.Environment.NewLine);
 		}
 	}
 }
