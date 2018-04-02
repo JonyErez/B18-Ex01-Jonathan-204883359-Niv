@@ -2,71 +2,70 @@
 
 namespace B18_Ex01_05
 {
-	public static class Program
+	public class Program
 	{
-		public static void Main()
+		public	static	void	Main()
 		{
-			int userInput = readInput();
+			uint userInput;
+			
+			userInput = readInput();
 			printNumberData(userInput);
 			Console.WriteLine("Press 'enter' to exit!");
 			Console.ReadLine();
 		}
 
-		private static int readInput()
+		private static	uint	readInput()
 		{
-			int userInput = 0;
-			string initialInput;
-			bool isValid = false;
+			uint	userInput;
+			string	initialInput;
 
 			Console.WriteLine("Please enter a 6 digit long number: ");
 			initialInput = Console.ReadLine();
-			while (!isValid)
+			while (initialInput.Length != 6 || !uint.TryParse(initialInput, out userInput))
 			{
-				isValid = initialInput.Length == 6;
-				if (isValid)
-				{
-					isValid = int.TryParse(initialInput, out userInput) && userInput > 0;
-				}
-
-				if (!isValid)
-				{
-					Console.WriteLine("Invalid input!");
-					Console.WriteLine("Please enter a valid 6 digit long number: ");
-					initialInput = Console.ReadLine();
-				}
+				Console.WriteLine("Invalid input!");
+				Console.WriteLine("Please enter a valid 6 digit long number: ");
+				initialInput = Console.ReadLine();
 			}
 
 			return userInput;
 		}
 
-		private static void findMinAndMaxDigits(int i_Number, out int io_MinDigit, out int io_MaxDigit)
+		private static	ushort	findMinOrMaxDigit(uint i_Number, bool findMax)
 		{
-			int currentDigit;
-			io_MaxDigit = io_MinDigit = i_Number % 10;
-			i_Number /= 10;
+			ushort currentDigit;
+			ushort numberBase = 10;
+			ushort resDigit;
+
+			resDigit = (ushort)(i_Number % numberBase);
+			i_Number /= numberBase;
 			while (i_Number != 0)
 			{
-				i_Number = Math.DivRem(i_Number, 10, out currentDigit);
-				if (currentDigit < io_MinDigit)
+				currentDigit = (ushort)(i_Number % numberBase);
+				i_Number = i_Number / numberBase;
+				if (findMax)
 				{
-					io_MinDigit = currentDigit;
+					resDigit = Math.Max(currentDigit, resDigit);
 				}
-
-				if (currentDigit > io_MaxDigit)
+				else
 				{
-					io_MaxDigit = currentDigit;
+					resDigit = Math.Min(currentDigit, resDigit);
 				}
 			}
+
+			return resDigit;
 		}
 
-		private static int howManyEvenDigits(int i_Number)
+		private static	ushort	howManyEvenDigits(uint i_Number)
 		{
-			int evenDigits = 0;
-			int currentDigit;
+			ushort evenDigits = 0;
+			ushort currentDigit;
+			uint numberBase = 10;
 
 			while (i_Number != 0)
 			{
-				i_Number = Math.DivRem(i_Number, 10, out currentDigit);
+				currentDigit = (ushort)(i_Number % numberBase);
+				i_Number = i_Number / numberBase;
 				if (currentDigit % 2 == 0)
 				{
 					evenDigits++;
@@ -76,16 +75,19 @@ namespace B18_Ex01_05
 			return evenDigits;
 		}
 
-		private static int howManyDigitsSmallerThanSingles(int i_Number)
+		private static	ushort	howManyDigitsSmallerThanSingles(uint i_Number)
 		{
-			int smallerThanSinglesDigit = 0;
-			int currentDigit;
-			int singlesDigit;
+			ushort smallerThanSinglesDigit = 0;
+			ushort currentDigit;
+			ushort singlesDigit;
+			ushort numberBase = 10;
 
-			i_Number = Math.DivRem(i_Number, 10, out singlesDigit);
+			singlesDigit = (ushort)(i_Number % numberBase);
+			i_Number = i_Number / numberBase;
 			while (i_Number != 0)
 			{
-				i_Number = Math.DivRem(i_Number, 10, out currentDigit);
+				currentDigit = (ushort)(i_Number % numberBase);
+				i_Number = i_Number / numberBase;
 				if (currentDigit < singlesDigit)
 				{
 					smallerThanSinglesDigit++;
@@ -95,17 +97,29 @@ namespace B18_Ex01_05
 			return smallerThanSinglesDigit;
 		}
 
-		private static void printNumberData(int i_Number)
+		private static	void	printNumberData(uint i_Number)
 		{
-			int maxDigit, minDigit, evenDigits, smallerThanSinglesDigit;
+			ushort		maxDigit;
+			ushort		minDigit;
+			ushort		evenDigits;
+			ushort		smallerThanSinglesDigit;
+			const bool	v_FindMax = true;
 
-			findMinAndMaxDigits(i_Number, out minDigit, out maxDigit);
+			maxDigit = findMinOrMaxDigit(i_Number, v_FindMax);
+			minDigit = findMinOrMaxDigit(i_Number, !v_FindMax);
 			evenDigits = howManyEvenDigits(i_Number);
 			smallerThanSinglesDigit = howManyDigitsSmallerThanSingles(i_Number);
-			Console.WriteLine("The smallest digit in the number is: {0}.", minDigit);
-			Console.WriteLine("The biggest digit in the number is: {0}.", maxDigit);
-			Console.WriteLine("The number of even digits in the number is: {0}.", evenDigits);
-			Console.WriteLine("There number of digits smaller than the singles digit is: {0}.", smallerThanSinglesDigit);
+			string numberData = string.Format(
+@"{4}The smallest digit in the number is: {0}.
+The biggest digit in the number is: {1}.
+The number of even digits in the number is: {2}.
+There number of digits smaller than the singles digit is: {3}.{4}{4}",
+minDigit,
+maxDigit,
+evenDigits,
+smallerThanSinglesDigit,
+System.Environment.NewLine);
+			Console.Write(numberData);
 		}
 	}
 }

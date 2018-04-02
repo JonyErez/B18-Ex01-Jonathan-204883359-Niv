@@ -2,24 +2,28 @@
 
 namespace B18_Ex01_04
 {
-	public static class Program
+	public class Program
 	{
-		public static void Main()
+		public	static	void	Main()
 		{
-			bool isNumberString;
-			string userInput = readInput(out isNumberString);
+			bool	isNumberString;
+			string	userInput;
+
+			userInput = readInput();
+			isNumberString = isAllNumbers(userInput);
 			printInputInformation(isNumberString, userInput);
 			Console.WriteLine("Press 'enter' to exit!");
 			Console.ReadLine();
 		}
 
-		private static void printInputInformation(bool i_IsNumberString, string i_UserInput)
+		private static	void	printInputInformation(bool i_IsNumberString, string i_UserInput)
 		{
-			bool isPalindrome = checkIfPalindrome(i_UserInput);
-			bool parity;
-			int lowerCaseNumber;
+			bool	isPalindrome;
+			bool	parity;
+			int		lowerCaseNumber;
 
-			Console.WriteLine("The string is a Palindrome: {0}", isPalindrome ? "Yes" : "No");
+			isPalindrome = checkIfPalindrome(i_UserInput);
+			Console.WriteLine("{1}The string is a Palindrome: {0}", isPalindrome ? "Yes" : "No", System.Environment.NewLine);
 			if (i_IsNumberString)
 			{
 				parity = checkParity(i_UserInput);
@@ -32,12 +36,13 @@ namespace B18_Ex01_04
 			}
 		}
 
-		private static string readInput(out bool o_IsNumberString)
+		private static	string	readInput()
 		{
-			Console.WriteLine("Please enter a 8 character long string: ");
-			string userInput = Console.ReadLine();
+			string userInput;
 
-			while (!isValidInput(userInput, out o_IsNumberString))
+			Console.WriteLine("Please enter a 8 character long string: ");
+			userInput = Console.ReadLine();
+			while (!isValidInput(userInput))
 			{
 				Console.WriteLine("Invalid input!");
 				Console.WriteLine("Please enter a valid 8 character long string: ");
@@ -47,7 +52,7 @@ namespace B18_Ex01_04
 			return userInput;
 		}
 
-		private static int howManyLowerCaseLetters(string i_UserInput)
+		private static	int		howManyLowerCaseLetters(string i_UserInput)
 		{
 			int lowerCaseLetters = 0;
 			
@@ -62,13 +67,13 @@ namespace B18_Ex01_04
 			return lowerCaseLetters;
 		}
 
-		private static bool checkParity(string i_UserInput)
+		private static	bool	checkParity(string i_UserInput)
 		{
 			int userInputNumber = int.Parse(i_UserInput);
 			return userInputNumber % 2 == 0;
 		}
 
-		private static bool checkIfPalindrome(string i_UserInput)
+		private static	bool	checkIfPalindrome(string i_UserInput)
 		{
 			bool isPalindrome = true;
 
@@ -80,27 +85,26 @@ namespace B18_Ex01_04
 			return isPalindrome;
 		}
 
-		private static bool isValidInput(string i_UserInput, out bool o_IsNumberString)
+		private static	bool	isValidInput(string i_UserInput)
 		{
 			bool isValid = i_UserInput.Length == 8;
-			o_IsNumberString = false;
 
 			if (isValid)
 			{
 				isValid = isAllLetters(i_UserInput);
 				if (!isValid)
 				{
-					o_IsNumberString = true;
-					isValid = IsAllNumbers(i_UserInput);
+					isValid = isAllNumbers(i_UserInput);
 				}
 			}
 
 			return isValid;
 		}
 
-		private static bool isAllLetters(string i_UserInput)
+		private static	bool	isAllLetters(string i_UserInput)
 		{
 			bool isValid = true;
+
 			foreach (char currentLetter in i_UserInput)
 			{
 				isValid = isValid && char.IsLetter(currentLetter);
@@ -109,9 +113,10 @@ namespace B18_Ex01_04
 			return isValid;
 		}
 
-		public static bool IsAllNumbers(string i_UserInput)
+		private	static	bool	isAllNumbers(string i_UserInput)
 		{
 			bool isValid = true;
+
 			foreach (char currentDigit in i_UserInput)
 			{
 				isValid = isValid && char.IsDigit(currentDigit);

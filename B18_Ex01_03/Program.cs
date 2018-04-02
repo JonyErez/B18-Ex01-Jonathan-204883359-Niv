@@ -3,11 +3,11 @@ using System.Text;
 
 namespace B18_Ex01_03
 {
-	public static class Program
+	public class Program
 	{
-		public static void Main()
+		public	static	void	Main()
 		{
-			int hourglassHeight;
+			uint hourglassHeight;
 
 			hourglassHeight = readInput();
 			Console.WriteLine("{0}{1}", System.Environment.NewLine, B18_Ex01_02.Program.Hourglass(hourglassHeight));
@@ -15,14 +15,14 @@ namespace B18_Ex01_03
 			Console.ReadLine();
 		}
 
-		private static int readInput()
+		private static	uint	readInput()
 		{
 			string sizeOfHourglass;
-			int hourglassHeight;
+			uint hourglassHeight;
 
 			Console.WriteLine("Please enter the size of the hourglass: ");
 			sizeOfHourglass = Console.ReadLine();
-			while (!checkInputValidity(sizeOfHourglass, out hourglassHeight))
+			while (!uint.TryParse(sizeOfHourglass, out hourglassHeight))
 			{
 				Console.WriteLine("Invalid input!");
 				Console.WriteLine("Please enter a valid size for the hourglass (positive int): ");
@@ -30,14 +30,6 @@ namespace B18_Ex01_03
 			}
 
 			return hourglassHeight;
-		}
-
-		private static bool checkInputValidity(string i_SizeOfHourGlass, out int o_HourglassHeight)
-		{
-			bool isValidInput = int.TryParse(i_SizeOfHourGlass, out o_HourglassHeight);
-			isValidInput = isValidInput && o_HourglassHeight > 0;
-			
-			return isValidInput;
 		}
 	}
 }
