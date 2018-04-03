@@ -4,7 +4,7 @@ namespace B18_Ex01_01
 {
 	public class Program
 	{
-		public	enum			eBase
+		public			enum	eBase
 		{
 			Two = 2,
 			Ten = 10
