@@ -19,12 +19,12 @@ namespace B18_Ex01_05
 			uint	userInput;
 			string	initialInput;
 
-			Console.WriteLine("Please enter a 6 digit long number: ");
+			Console.WriteLine("Please enter a 6 digit long positive number: ");
 			initialInput = Console.ReadLine();
 			while (initialInput.Length != 6 || !uint.TryParse(initialInput, out userInput))
 			{
 				Console.WriteLine("Invalid input!");
-				Console.WriteLine("Please enter a valid 6 digit long number: ");
+				Console.WriteLine("Please enter a valid 6 digit long positive number: ");
 				initialInput = Console.ReadLine();
 			}
 
