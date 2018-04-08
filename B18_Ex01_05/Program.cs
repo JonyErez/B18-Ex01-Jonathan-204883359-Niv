@@ -37,19 +37,26 @@ namespace B18_Ex01_05
 			ushort numberBase = 10;
 			ushort resDigit;
 
-			resDigit = (ushort)(i_Number % numberBase);
-			i_Number /= numberBase;
-			while (i_Number != 0)
+			if (!findMax && checkNumberLength(i_Number) < 6)
 			{
-				currentDigit = (ushort)(i_Number % numberBase);
-				i_Number = i_Number / numberBase;
-				if (findMax)
+				resDigit = 0;
+			}
+			else
+			{
+				resDigit = (ushort)(i_Number % numberBase);
+				i_Number /= numberBase;
+				while (i_Number != 0)
 				{
-					resDigit = Math.Max(currentDigit, resDigit);
-				}
-				else
-				{
-					resDigit = Math.Min(currentDigit, resDigit);
+					currentDigit = (ushort)(i_Number % numberBase);
+					i_Number = i_Number / numberBase;
+					if (findMax)
+					{
+						resDigit = Math.Max(currentDigit, resDigit);
+					}
+					else
+					{
+						resDigit = Math.Min(currentDigit, resDigit);
+					}
 				}
 			}
 
@@ -61,7 +68,9 @@ namespace B18_Ex01_05
 			ushort evenDigits = 0;
 			ushort currentDigit;
 			uint numberBase = 10;
+			ushort expectedNumberLength = 6;
 
+			evenDigits += (ushort)(expectedNumberLength - checkNumberLength(i_Number));
 			while (i_Number != 0)
 			{
 				currentDigit = (ushort)(i_Number % numberBase);
@@ -81,8 +90,13 @@ namespace B18_Ex01_05
 			ushort currentDigit;
 			ushort singlesDigit;
 			ushort numberBase = 10;
+			ushort expectedNumberLength = 6;
 
 			singlesDigit = (ushort)(i_Number % numberBase);
+			if (singlesDigit > 0)
+			{
+				smallerThanSinglesDigit += (ushort)(expectedNumberLength - checkNumberLength(i_Number));
+			}
 			i_Number = i_Number / numberBase;
 			while (i_Number != 0)
 			{
@@ -93,7 +107,7 @@ namespace B18_Ex01_05
 					smallerThanSinglesDigit++;
 				}
 			}
-
+			
 			return smallerThanSinglesDigit;
 		}
 
@@ -113,13 +127,25 @@ namespace B18_Ex01_05
 @"{4}The smallest digit in the number is: {0}.
 The biggest digit in the number is: {1}.
 The number of even digits in the number is: {2}.
-There number of digits smaller than the singles digit is: {3}.{4}{4}",
+The number of digits smaller than the singles digit is: {3}.{4}{4}",
 minDigit,
 maxDigit,
 evenDigits,
 smallerThanSinglesDigit,
 System.Environment.NewLine);
 			Console.Write(numberData);
+		}
+
+		private static	ushort	checkNumberLength(uint i_Number)
+		{
+			ushort numberLength = 0;
+			while(i_Number != 0)
+			{
+				i_Number /= 10;
+				numberLength++;
+			}
+
+			return numberLength;
 		}
 	}
 }

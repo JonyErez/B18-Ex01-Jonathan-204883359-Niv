@@ -79,7 +79,7 @@ namespace B18_Ex01_04
 
 			for (int left = 0, right = i_UserInput.Length - 1; left < right; left++, right--)
 			{
-				isPalindrome = isPalindrome && (i_UserInput[left] == i_UserInput[right]);
+				isPalindrome = isPalindrome && (char.ToLower(i_UserInput[left]) == char.ToLower(i_UserInput[right]));
 			}
 
 			return isPalindrome;
