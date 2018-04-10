@@ -162,7 +162,7 @@ namespace B18_Ex01_01
 			i_SumOfNumbers /= numberOfInputs;
 			avgNumOfOnes = i_SumOfOnes / numberOfInputs;
 			avgSumOfNumbers = i_SumOfNumbers / numberOfInputs;
-			avgNumOfZeros = 9 - i_SumOfOnes;
+			avgNumOfZeros = 9 - avgNumOfOnes;
 			inputData = string.Format(
 @"{8}The decimal number values are: {0}, {1}, {2}.
 The avg number of zeroes in each number is: {3:F3}
