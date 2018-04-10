@@ -138,7 +138,7 @@ namespace B18_Ex01_01
 			{
 				i_DecimalNumber = Math.DivRem(i_DecimalNumber, decimalBase, out currentDigit);
 				nextDigit = i_DecimalNumber % decimalBase;
-				if(nextDigit > currentDigit)
+				if(nextDigit <= currentDigit)
 				{
 					isDownwardSeries = 0;
 				}
@@ -159,7 +159,6 @@ namespace B18_Ex01_01
 			float numberOfInputs = 3, avgNumOfZeros, avgNumOfOnes, avgSumOfNumbers;
 			string inputData;
 
-			i_SumOfNumbers /= numberOfInputs;
 			avgNumOfOnes = i_SumOfOnes / numberOfInputs;
 			avgSumOfNumbers = i_SumOfNumbers / numberOfInputs;
 			avgNumOfZeros = 9 - avgNumOfOnes;
