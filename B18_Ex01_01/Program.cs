@@ -16,35 +16,35 @@ namespace B18_Ex01_01
 			int		howManyPowerOfTwo = 0, howManyDownwardSeries = 0;
 			int		firstBinaryNumber, secondBinaryNumber, thirdBinaryNumber;
 			string	firstBinaryString, secondBinaryString, thirdBinaryString;
-			float	avgSumOfNumbers = 0, avgNumOfOnes = 0;
+			float	sumOfNumbers = 0, sumOfOnes = 0;
 
 			Console.WriteLine("Please enter the first binary number (9 digits long): ");
 			firstBinaryString = readBinary();
-			avgNumOfOnes += countOnes(firstBinaryString);
+			sumOfOnes += countOnes(firstBinaryString);
 			howManyPowerOfTwo += isAPowerOfTwo(firstBinaryString);
 			firstBinaryNumber = binaryToInt(firstBinaryString);
 			howManyDownwardSeries += isDownwardSeries(firstBinaryNumber);
-			avgSumOfNumbers += firstBinaryNumber;
+			sumOfNumbers += firstBinaryNumber;
 			Console.WriteLine("Please enter the second binary number (9 digits long): ");
 			secondBinaryString = readBinary();
-			avgNumOfOnes += countOnes(secondBinaryString);
+			sumOfOnes += countOnes(secondBinaryString);
 			howManyPowerOfTwo += isAPowerOfTwo(secondBinaryString);
 			secondBinaryNumber = binaryToInt(secondBinaryString);
 			howManyDownwardSeries += isDownwardSeries(secondBinaryNumber);
-			avgSumOfNumbers += secondBinaryNumber;
+			sumOfNumbers += secondBinaryNumber;
 			Console.WriteLine("Please enter the third binary number (9 digits long): ");
 			thirdBinaryString = readBinary();
-			avgNumOfOnes += countOnes(thirdBinaryString);
+			sumOfOnes += countOnes(thirdBinaryString);
 			howManyPowerOfTwo += isAPowerOfTwo(thirdBinaryString);
 			thirdBinaryNumber = binaryToInt(thirdBinaryString);
 			howManyDownwardSeries += isDownwardSeries(thirdBinaryNumber);
-			avgSumOfNumbers += thirdBinaryNumber;
+			sumOfNumbers += thirdBinaryNumber;
 			printStatistics(
 				firstBinaryNumber, 
 				secondBinaryNumber, 
 				thirdBinaryNumber, 
-				avgSumOfNumbers, 
-				avgNumOfOnes, 
+				sumOfNumbers, 
+				sumOfOnes, 
 				howManyPowerOfTwo, 
 				howManyDownwardSeries);
 		}
@@ -151,18 +151,19 @@ namespace B18_Ex01_01
 			int i_FirstBinaryNumber, 
 			int i_SecondBinaryNumber, 
 			int i_ThirdBinaryNumber,
-			float i_AvgSumOfNumbers, 
-			float i_AvgNumOfOnes, 
+			float i_SumOfNumbers, 
+			float i_SumOfOnes, 
 			int i_HowManyPowerOfTwo, 
 			int i_HowManyDownwardSeries)
 		{
-			float numberOfInputs = 3, avgNumOfZeros;
-			i_AvgSumOfNumbers /= numberOfInputs;
-			i_AvgNumOfOnes /= numberOfInputs;
+			float numberOfInputs = 3, avgNumOfZeros, avgNumOfOnes, avgSumOfNumbers;
+			string inputData;
 
-			avgNumOfZeros = 9 - i_AvgNumOfOnes;
-
-			string inputData = string.Format(
+			i_SumOfNumbers /= numberOfInputs;
+			avgNumOfOnes = i_SumOfOnes / numberOfInputs;
+			avgSumOfNumbers = i_SumOfNumbers / numberOfInputs;
+			avgNumOfZeros = 9 - i_SumOfOnes;
+			inputData = string.Format(
 @"{8}The decimal number values are: {0}, {1}, {2}.
 The avg number of zeroes in each number is: {3:F3}
 The avg number of ones in each number is: {4:F3}
@@ -173,10 +174,10 @@ The avg sum of all the numbers is: {7:F3} {8}",
 			i_SecondBinaryNumber,
 			i_ThirdBinaryNumber, 
 			avgNumOfZeros,
-			i_AvgNumOfOnes,
+			avgNumOfOnes,
 			i_HowManyPowerOfTwo,
 			i_HowManyDownwardSeries,
-			i_AvgSumOfNumbers,
+			avgSumOfNumbers,
 			System.Environment.NewLine);
 			Console.Write(inputData);
 		}
