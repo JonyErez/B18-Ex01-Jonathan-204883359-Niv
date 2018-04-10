@@ -97,6 +97,7 @@ namespace B18_Ex01_05
 			{
 				smallerThanSinglesDigit += (ushort)(expectedNumberLength - checkNumberLength(i_Number));
 			}
+
 			i_Number = i_Number / numberBase;
 			while (i_Number != 0)
 			{
