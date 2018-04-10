@@ -40,12 +40,12 @@ namespace B18_Ex01_04
 		{
 			string userInput;
 
-			Console.WriteLine("Please enter a 8 character long string: ");
+			Console.WriteLine("Please enter a 8 character long string consisting of only numbers or only letters: ");
 			userInput = Console.ReadLine();
 			while (!isValidInput(userInput))
 			{
 				Console.WriteLine("Invalid input!");
-				Console.WriteLine("Please enter a valid 8 character long string: ");
+				Console.WriteLine("Please enter a valid 8 character long string (only numbers or only letters): ");
 				userInput = Console.ReadLine();
 			}
 
